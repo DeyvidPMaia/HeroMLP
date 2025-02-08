@@ -2,10 +2,43 @@ import discord
 from discord.ext import commands
 import random
 import json
+import os
 
 class Reverter(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    def carregar_dados_servidor(self, guild_id):
+        """Carrega os dados do servidor a partir do arquivo JSON correspondente."""
+        caminho = f"resources/servidores/{guild_id}.json"
+        if not os.path.exists(caminho):
+            return {
+                "personagens_salvos": [],
+                "personagens": [],
+                "personagens_por_usuario": {},
+                "contador_personagens_salvos": {}
+            }
+
+        try:
+            with open(caminho, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return {
+                "personagens_salvos": [],
+                "personagens": [],
+                "personagens_por_usuario": {},
+                "contador_personagens_salvos": {}
+            }
+
+    def salvar_dados_servidor(self, guild_id, dados):
+        """Salva os dados do servidor no arquivo JSON correspondente."""
+        caminho = f"resources/servidores/{guild_id}.json"
+        os.makedirs(os.path.dirname(caminho), exist_ok=True)
+        try:
+            with open(caminho, "w", encoding="utf-8") as f:
+                json.dump(dados, f, ensure_ascii=False, indent=4)
+        except Exception as e:
+            print(f"Erro ao salvar dados para o servidor {guild_id}: {e}")
 
     @commands.command(
         name="perdido",
@@ -13,36 +46,25 @@ class Reverter(commands.Cog):
               "Uma mensagem será enviada informando: 'um amigo que tentava ajudar foi perdido novamente.'")
     )
     async def perdido(self, ctx):
-        # Tenta carregar os dados do arquivo JSON
-        try:
-            with open("resources/dados.json", "r", encoding="utf-8") as f:
-                dados = json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            await ctx.send("❌ Erro ao carregar os dados. Verifique se o arquivo 'dados.json' existe e está correto.")
-            return
+        guild_id = ctx.guild.id
+        dados = self.carregar_dados_servidor(guild_id)
 
-        # Obtém as listas e dicionários do JSON
-        personagens_salvos = dados.get("personagens_salvos", [])
-        personagens_disponiveis = dados.get("personagens", [])
-        personagens_por_usuario = dados.get("personagens_por_usuario", {})
-        contador_personagens_salvos = dados.get("contador_personagens_salvos", {})
+        personagens_salvos = dados["personagens_salvos"]
+        personagens_disponiveis = dados["personagens"]
+        personagens_por_usuario = dados["personagens_por_usuario"]
+        contador_personagens_salvos = dados["contador_personagens_salvos"]
 
-        # Verifica se há personagens salvos para remover
         if not personagens_salvos:
             await ctx.send("❌ Nenhum personagem foi salvo para ser perdido novamente.")
             return
 
-        # Seleciona aleatoriamente um personagem da lista de salvos
         personagem = random.choice(personagens_salvos)
 
-        # Remove o personagem da lista de salvos e adiciona-o à lista de disponíveis
         personagens_salvos.remove(personagem)
         personagens_disponiveis.append(personagem)
 
-        # Procura o personagem no dicionário de personagens por usuário
         user_found = None
         for user_id, lista in personagens_por_usuario.items():
-            # Se houver duplicata no mesmo usuário, removemos apenas uma ocorrência
             for p in lista:
                 if p["nome"].lower() == personagem["nome"].lower():
                     lista.remove(p)
@@ -51,23 +73,15 @@ class Reverter(commands.Cog):
             if user_found:
                 break
 
-        # Se o personagem estava associado a algum usuário, decrementa o contador correspondente
         if user_found:
             contador_personagens_salvos[user_found] = max(contador_personagens_salvos.get(user_found, 1) - 1, 0)
 
-        # Atualiza os dados no dicionário geral
         dados["personagens"] = personagens_disponiveis
         dados["personagens_salvos"] = personagens_salvos
         dados["personagens_por_usuario"] = personagens_por_usuario
         dados["contador_personagens_salvos"] = contador_personagens_salvos
 
-        # Salva os dados atualizados de volta em dados.json
-        try:
-            with open("resources/dados.json", "w", encoding="utf-8") as f:
-                json.dump(dados, f, ensure_ascii=False, indent=4)
-        except Exception as e:
-            await ctx.send("❌ Erro ao salvar os dados atualizados.")
-            return
+        self.salvar_dados_servidor(guild_id, dados)
 
         await ctx.send("❗ **Um amigo que tentava ajudar foi perdido novamente.**")
 

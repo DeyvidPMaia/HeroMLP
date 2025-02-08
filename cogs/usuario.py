@@ -1,10 +1,9 @@
 #usuario.py
 
-
 import discord
-import json
 from discord import Embed
 from discord.ext import commands
+from server_data import carregar_dados_guild  # Função que carrega o JSON do servidor
 
 class Usuario(commands.Cog):
     def __init__(self, bot):
@@ -14,15 +13,9 @@ class Usuario(commands.Cog):
     @commands.command(name="meus", help="Exibe os personagens salvos por um usuário.")
     async def meus_personagens(self, ctx, user: discord.User = None):
         user = user or ctx.author
-        personagens_por_usuario = {}
-
-        try:
-            with open("resources/dados.json", "r", encoding="utf-8") as f:
-                dados = json.load(f)
-                personagens_por_usuario = dados.get("personagens_por_usuario", {})
-        except (FileNotFoundError, json.JSONDecodeError):
-            await ctx.send("❌ **Erro ao carregar dados. O arquivo 'dados.json' não foi encontrado ou está corrompido.**")
-            return
+        guild_id = str(ctx.guild.id)
+        dados = carregar_dados_guild(guild_id)
+        personagens_por_usuario = dados.get("personagens_por_usuario", {})
 
         personagens = personagens_por_usuario.get(str(user.id), [])
 
@@ -37,35 +30,33 @@ class Usuario(commands.Cog):
         else:
             await ctx.send(f"❌ **Nenhum personagem salvo por {user.name}.**")
 
-
     @commands.command(name="ranking", help="Mostra quantos personagens cada usuário salvou.")
     async def ranking(self, ctx):
-        try:
-            with open("resources/dados.json", "r", encoding="utf-8") as f:
-                dados = json.load(f)
-                contador_personagens_salvos = dados.get("contador_personagens_salvos", {})
-                personagens_por_usuario = dados.get("personagens_por_usuario", {})
-        except (FileNotFoundError, json.JSONDecodeError):
-            await ctx.send("❌ **Erro ao carregar dados. O arquivo 'dados.json' não foi encontrado ou está corrompido.**")
-            return
+        guild_id = str(ctx.guild.id)
+        dados = carregar_dados_guild(guild_id)
+        contador_personagens_salvos = dados.get("contador_personagens_salvos", {})
+        personagens_por_usuario = dados.get("personagens_por_usuario", {})
 
         if contador_personagens_salvos:
             ranking_lista = []
             # Itera pelos usuários ordenados pelo número de personagens salvos (em ordem decrescente)
             for user_id, count in sorted(contador_personagens_salvos.items(), key=lambda item: item[1], reverse=True):
-                # Verifica se há personagens cadastrados para o usuário.
-                # Se não existir ou se a lista estiver vazia, pula esse usuário.
+                # Pula usuários sem personagens salvos
                 if not personagens_por_usuario.get(user_id) or len(personagens_por_usuario.get(user_id)) == 0:
                     continue
 
                 # Busca o usuário na cache ou via API do Discord
                 if user_id not in self.user_cache:
                     try:
-                        user = await self.bot.fetch_user(user_id)
-                        self.user_cache[user_id] = user
+                        user_obj = await self.bot.fetch_user(user_id)
+                        self.user_cache[user_id] = user_obj
                     except Exception:
                         self.user_cache[user_id] = f"Usuário {user_id}"
-                user_name = self.user_cache[user_id] if isinstance(self.user_cache[user_id], str) else self.user_cache[user_id].name
+                user_name = (
+                    self.user_cache[user_id].name
+                    if not isinstance(self.user_cache[user_id], str)
+                    else self.user_cache[user_id]
+                )
 
                 ranking_lista.append(f"{user_name}: **{count} personagens salvos**")
 

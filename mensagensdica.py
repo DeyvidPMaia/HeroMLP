@@ -1,40 +1,44 @@
 import random
 import asyncio
-import globals
 import json
+import globals  # Usado como fallback para valores padrão
+from server_data import carregar_dados_guild  # Certifique-se de que essa função está implementada
 
-async def enviar_dica_personagem(bot):
+async def enviar_dica_personagem(bot, guild_id):
     """
-    Aguarda um intervalo especificado em globals.intervalo_dica_personagem e, 
-    em seguida, envia uma dica de personagem no canal configurado em globals.ID_DO_CANAL_DICAS.
-    Se o canal não estiver configurado (None) ou não for encontrado, a dica não é enviada.
+    Aguarda um intervalo especificado no JSON de dados do servidor e, 
+    em seguida, envia uma dica de personagem no canal configurado para dicas naquele servidor.
+    Se o canal não estiver configurado ou não for encontrado, a dica não é enviada.
     """
     while True:
-        await asyncio.sleep(globals.intervalo_dica_personagem)
+        # Carrega os dados específicos do servidor
+        dados = carregar_dados_guild(guild_id)
+        # Obtém o intervalo de dicas do JSON ou usa o valor padrão em globals
+        intervalo = dados.get("intervalo_dica_personagem", globals.intervalo_dica_personagem)
+        await asyncio.sleep(intervalo)
         try:
-            # Verifica se o canal de dicas foi configurado
-            if globals.ID_DO_CANAL_DICAS is None:
-                print("[DICA] Canal para dicas não configurado.")
+            canal_id = dados.get("ID_DO_CANAL_DICAS")
+            if canal_id is None:
+                print(f"[DICA] Canal para dicas não configurado para a guild {guild_id}.")
                 continue
 
-            canal = bot.get_channel(globals.ID_DO_CANAL_DICAS)
+            canal = bot.get_channel(canal_id)
             if canal is None:
-                print(f"[DICA] Canal para dicas com ID {globals.ID_DO_CANAL_DICAS} não encontrado.")
+                print(f"[DICA] Canal para dicas com ID {canal_id} não encontrado na guild {guild_id}.")
                 continue
 
-            # Se não houver personagens disponíveis, pula a dica
-            if not globals.personagens_disponiveis:
-                print("[DICA] Nenhum personagem disponível.")
+            # Obtém a lista de personagens disponíveis para esta guild
+            personagens = dados.get("personagens", [])
+            if not personagens:
+                print(f"[DICA] Nenhum personagem disponível na guild {guild_id}.")
                 continue
 
             # Seleciona aleatoriamente um personagem disponível
-            personagem = random.choice(globals.personagens_disponiveis)
+            personagem = random.choice(personagens)
             nome_personagem = personagem["nome"]
 
-            # Carrega as descrições diretamente do arquivo descricoes.json
+            # Carrega as descrições dos personagens a partir do arquivo
             descricoes = carregar_descricoes()
-
-            # Procura a descrição correspondente ao nome do personagem
             if nome_personagem in descricoes:
                 descricao = descricoes[nome_personagem]
             else:
@@ -42,10 +46,9 @@ async def enviar_dica_personagem(bot):
 
             mensagem = f"💡 **Dica:** Um personagem ainda não salvo é descrito como:\n*'{descricao}'*"
             await canal.send(mensagem)
-            print("[DICA] Dica enviada com sucesso.")
-
+            print(f"[DICA] Dica enviada com sucesso para a guild {guild_id}.")
         except Exception as e:
-            print(f"[ERRO] Falha ao enviar dica: {e}")
+            print(f"[ERRO] Falha ao enviar dica para a guild {guild_id}: {e}")
 
 def carregar_descricoes():
     """

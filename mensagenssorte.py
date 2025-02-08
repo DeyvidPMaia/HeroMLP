@@ -3,6 +3,7 @@ import random
 import asyncio
 import globals
 import json
+from server_data import carregar_dados_guild  # Certifique-se de que essa função está implementada
 
 class SorteView(discord.ui.View):
     def __init__(self):
@@ -29,21 +30,25 @@ class SorteView(discord.ui.View):
             # Atualiza a mensagem pública para refletir que o biscoito foi aberto
             await interaction.message.edit(view=self)
 
-async def enviar_sorte_automatico(bot):
+async def enviar_sorte_automatico(bot, guild_id):
     """
-    Envia automaticamente o biscoito da sorte a cada intervalo definido por globals.tempo_sorte.
-    A cada envio, o canal é buscado usando globals.ID_DO_CANAL_DICAS.
+    Envia automaticamente o biscoito da sorte a cada intervalo definido no JSON do servidor.
     """
     while True:
-        await asyncio.sleep(globals.tempo_sorte + int(globals.tempo_sorte / 4))  # Espera o tempo definido para sorte
-        # Verifica se o canal de sorte está configurado
-        if globals.ID_DO_CANAL_SORTE is None:
-            print("Canal para sorte não configurado. Pulando envio.")
+        # Carrega os dados específicos do servidor
+        dados = carregar_dados_guild(guild_id)
+        # Obtém o tempo de sorte do JSON ou usa o valor padrão em globals
+        tempo_sorte = dados.get("tempo_sorte", globals.tempo_sorte)
+        await asyncio.sleep(tempo_sorte + int(tempo_sorte / 4))
+        
+        canal_id = dados.get("ID_DO_CANAL_SORTE")
+        if canal_id is None:
+            print(f"[SORTE] Canal para sorte não configurado na guild {guild_id}. Pulando envio.")
             continue
 
-        canal = bot.get_channel(globals.ID_DO_CANAL_SORTE)
+        canal = bot.get_channel(canal_id)
         if canal is None:
-            print(f"Canal com ID {globals.ID_DO_CANAL_SORTE} não encontrado.")
+            print(f"[SORTE] Canal com ID {canal_id} não encontrado na guild {guild_id}.")
             continue
 
         # Cria o embed com a mensagem do biscoito da sorte
@@ -54,7 +59,6 @@ async def enviar_sorte_automatico(bot):
         )
         view = SorteView()
         await canal.send(embed=embed, view=view)
-
 
 def carregar_sortes():
     """

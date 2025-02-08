@@ -12,11 +12,12 @@ import globals
 from funcoes import carregar_estado, carregar_personagens
 
 globals.personagens_inicial = carregar_personagens()
-globals.personagens_disponiveis, globals.personagens_salvos, globals.contador_personagens_salvos, globals.personagens_por_usuario = carregar_estado()
+#globals.personagens_disponiveis, globals.personagens_salvos, globals.contador_personagens_salvos, globals.personagens_por_usuario = carregar_estado()
 
 load_dotenv()
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+caminho_env = os.path.join(os.path.dirname(os.getcwd()), ".env")
+BOT_TOKEN = os.getenv(caminho_env)
 
 # Configurações do Bot
 intents = discord.Intents.default()

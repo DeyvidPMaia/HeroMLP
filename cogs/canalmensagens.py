@@ -2,32 +2,40 @@
 
 import discord
 from discord.ext import commands
-import globals 
-from mensagensdica import enviar_dica_personagem
-from mensagenssorte import enviar_sorte_automatico
+from server_data import carregar_dados_guild, salvar_dados_guild
+from mensagensdica import enviar_dica_personagem  # Atualize essa função para aceitar guild_id
+from mensagenssorte import enviar_sorte_automatico  # Atualize essa função para aceitar guild_id
 
 class CanalMensagens(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.dica_task = None
-        self.sorte_task = None
+        # Utilizamos dicionários para gerenciar tasks por guild
+        self.dica_tasks = {}
+        self.sorte_tasks = {}
 
     @commands.command(name="canal", help="Configura o canal para 'dicas' ou 'sorte'.\nUso: !!canal dicas ou !!canal sorte")
     async def canal(self, ctx, tipo: str):
         tipo = tipo.lower()
+        guild_id = str(ctx.guild.id)
+        dados = carregar_dados_guild(guild_id)
+        
         if tipo == "dicas":
-            globals.ID_DO_CANAL_DICAS = ctx.channel.id
+            dados["ID_DO_CANAL_DICAS"] = ctx.channel.id
+            salvar_dados_guild(guild_id, dados)
             await ctx.send(f"✅ Canal para dicas configurado para {ctx.channel.mention}.")
-            if self.dica_task is None or self.dica_task.done():
-                self.dica_task = self.bot.loop.create_task(enviar_dica_personagem(self.bot))
+            # Inicia a task para envio de dicas, se ainda não estiver rodando para este servidor
+            if guild_id not in self.dica_tasks or self.dica_tasks[guild_id].done():
+                self.dica_tasks[guild_id] = self.bot.loop.create_task(enviar_dica_personagem(self.bot, guild_id))
+        
         elif tipo == "sorte":
-            globals.ID_DO_CANAL_SORTE = ctx.channel.id
+            dados["ID_DO_CANAL_SORTE"] = ctx.channel.id
+            salvar_dados_guild(guild_id, dados)
             await ctx.send(f"✅ Canal para sorte configurado para {ctx.channel.mention}.")
-            if self.sorte_task is None or self.sorte_task.done():
-                self.sorte_task = self.bot.loop.create_task(enviar_sorte_automatico(self.bot))
+            if guild_id not in self.sorte_tasks or self.sorte_tasks[guild_id].done():
+                self.sorte_tasks[guild_id] = self.bot.loop.create_task(enviar_sorte_automatico(self.bot, guild_id))
+        
         else:
             await ctx.send("❌ Tipo inválido! Utilize 'dicas' ou 'sorte'.")
-
 
 async def setup(bot):
     await bot.add_cog(CanalMensagens(bot))

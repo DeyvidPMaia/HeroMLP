@@ -31,6 +31,3 @@ intervalo_dica_personagem = 10
 
 ID_DO_CANAL_DICAS = 0
 ID_DO_CANAL_SORTE = 0
-
-
-'''as funcoes de envio de sorte e dica espearam o await pra poder resetar o tempo, corrigir isso, talvez, reiniciando elas ao usar o comando tempo'''

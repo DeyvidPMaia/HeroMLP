@@ -2,7 +2,8 @@
 
 import discord
 from discord.ext import commands
-import globals
+from server_data import carregar_dados_guild
+import globals  # Utilizado para valores padrão (caso a guild não tenha configurado algum parâmetro)
 
 class BotStatus(commands.Cog):
     def __init__(self, bot):
@@ -10,22 +11,24 @@ class BotStatus(commands.Cog):
 
     @commands.command(name="status", help="Exibe o estado atual do bot e suas configurações.")
     async def exibir_status(self, ctx):
-        total_personagens_disponiveis = len(globals.personagens_disponiveis)
-        total_personagens_salvos = len(globals.personagens_salvos)
-        total_usuarios_salvaram = len(globals.personagens_por_usuario)
+        guild_id = str(ctx.guild.id)
+        dados = carregar_dados_guild(guild_id)
 
-        # Verificar se ultimo_usuario_salvador não é None antes de tentar buscar o usuário
-        if globals.ultimo_usuario_salvador:
+        total_personagens_disponiveis = len(dados.get("personagens", []))
+        total_personagens_salvos = len(dados.get("personagens_salvos", []))
+        total_usuarios_salvaram = len(dados.get("personagens_por_usuario", {}))
+        tempo_impedimento = dados.get("tempo_impedimento", globals.tempo_impedimento)
+        restricao = dados.get("restricao_usuario_unico", globals.restricao_usuario_unico)
+        ultimo_usuario_salvador = dados.get("ultimo_usuario_salvador", None)
+
+        # Processa o último usuário salvador para exibição
+        if ultimo_usuario_salvador:
             try:
-                # Buscar membro no servidor atual
-                membro = ctx.guild.get_member(int(globals.ultimo_usuario_salvador)) if ctx.guild else None
+                membro = ctx.guild.get_member(int(ultimo_usuario_salvador)) if ctx.guild else None
                 nome_usuario_salvador = membro.display_name if membro else None
-
-                # Caso não encontre o membro no servidor, tenta buscar globalmente
                 if not nome_usuario_salvador:
-                    user = await self.bot.fetch_user(globals.ultimo_usuario_salvador)
+                    user = await self.bot.fetch_user(ultimo_usuario_salvador)
                     nome_usuario_salvador = f"{user.name}#{user.discriminator}"
-
             except Exception as e:
                 nome_usuario_salvador = "Usuário desconhecido"
                 print(f"Erro ao buscar o usuário: {e}")
@@ -38,24 +41,23 @@ class BotStatus(commands.Cog):
         )
         embed.add_field(name="🌟 Personagens já resgatados", value=f"{total_personagens_salvos}", inline=True)
         embed.add_field(name="🚨 Personagens Não resgatados", value=f"{total_personagens_disponiveis}", inline=True)
-        embed.add_field(name="🔒 Regra: Resgatar Apenas Um Por Vez", value=f"{'Ativada' if globals.restricao_usuario_unico else 'Desativada'}", inline=True)
+        embed.add_field(name="🔒 Regra: Resgatar Apenas Um Por Vez", value=f"{'Ativada' if restricao else 'Desativada'}", inline=True)
         embed.add_field(name="👥 Usuários que Salvaram Personagens", value=f"{total_usuarios_salvaram}", inline=True)
-        embed.add_field(name="⏳ Tempo de Impedimento", value=f"{globals.tempo_impedimento} segundos", inline=True)
+        embed.add_field(name="⏳ Tempo de Impedimento", value=f"{tempo_impedimento} segundos", inline=True)
         embed.add_field(name="🏆 Último usuário salvador", value=nome_usuario_salvador, inline=False)
         embed.set_footer(text="Continue ajudando nossos amigos. Que a magia da amizade te ajude nobre herói!")
 
         await ctx.send(embed=embed)
 
         # Paginação para exibir os usuários que salvaram personagens
-        if globals.personagens_por_usuario:
+        personagens_por_usuario = dados.get("personagens_por_usuario", {})
+        if personagens_por_usuario:
             paginas = []
             descricao_atual = ""
-
-            for user_id, personagens in globals.personagens_por_usuario.items():
-                # Buscar membro no servidor atual ou globalmente
+            for user_id, personagens in personagens_por_usuario.items():
+                # Tenta buscar o usuário no servidor ou via API do Discord
                 membro = ctx.guild.get_member(int(user_id)) if ctx.guild else None
                 nome_usuario = membro.display_name if membro else None
-
                 if not nome_usuario:
                     try:
                         user = await self.bot.fetch_user(user_id)
@@ -64,13 +66,13 @@ class BotStatus(commands.Cog):
                         nome_usuario = f"Usuário {user_id}"
 
                 entrada = f"**{nome_usuario}** salvou {len(personagens)} personagem(ns)\n"
-                if len(descricao_atual) + len(entrada) > 1024:  # Limite de campo do Embed
+                if len(descricao_atual) + len(entrada) > 1024:  # Limite do campo de descrição do Embed
                     paginas.append(descricao_atual)
                     descricao_atual = entrada
                 else:
                     descricao_atual += entrada
 
-            if descricao_atual:  # Adicionar a última página
+            if descricao_atual:
                 paginas.append(descricao_atual)
 
             for i, pagina in enumerate(paginas, start=1):
