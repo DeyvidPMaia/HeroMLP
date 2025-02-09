@@ -89,6 +89,7 @@ class Gerenciamento(commands.Cog):
             await ctx.send("🎉 **Nenhum personagem foi salvo ainda.**")
 
     @commands.command(name="tempo", help="Altera os tempos para 'dicas', 'impedimento' ou 'sorte'. Exemplo: !!tempo dicas 150")
+    @apenas_moderador()
     async def tempo(self, ctx, tipo: str, valor: int):
         if valor < 0:
             await ctx.send("❌ O valor deve ser um número positivo.")

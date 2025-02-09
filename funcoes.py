@@ -67,13 +67,24 @@ def apenas_moderador():
     async def predicado(ctx):
         if modo_de_teste:  # Se o modo de teste estiver ativado, qualquer usuário pode usar o comando
             return True
-        return ctx.author.guild_permissions.administrator  # Verifica permissão de administrador
+
+        # Verifica se o usuário tem permissão de administrador
+        if ctx.author.guild_permissions.administrator:
+            return True
+
+        # Verifica se o usuário possui o cargo "magoMLP"
+        cargo_mago = discord.utils.get(ctx.author.roles, name="MagoMLP")
+        if cargo_mago:
+            return True
+
+        return False  # Não tem permissão
 
     def decorator(func):
-        func.admin_only = True  # Marca a função como restrita a administradores
+        func.admin_only = True  # Marca a função como restrita a administradores ou "magoMLP"
         return commands.check(predicado)(func)
 
     return decorator
+
 
 
 '''se der erro quando subir pra algum lugar, o erro ta nesse os aqui VVV'''
@@ -97,3 +108,13 @@ def sortear_naoencontrado():
         return (f"resources/poneis/Naoencontrado/" + imagem_sorteada)
     else:
         return "resources/poneis/semimagem.png"
+
+
+def carregar_token():
+    caminho_env = os.path.join(os.path.dirname(os.getcwd()), ".env")
+
+    if os.path.exists(caminho_env):
+        with open(caminho_env, "r") as f:
+            return(f.read())
+    else:
+        print("Arquivo .env não encontrado ou sem permissão.")

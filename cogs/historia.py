@@ -31,7 +31,7 @@ class HistoriaCog(commands.Cog):
 
     @commands.command(
         name="historia", 
-        help="Exibe a lore do bot como um pequeno livro com paginação."
+        help="Exibe a lore deste Bot."
     )
     async def historia(self, ctx: commands.Context):
         pages = []
@@ -121,7 +121,7 @@ class HistoriaCog(commands.Cog):
         embed7 = discord.Embed(
             title="História do Bot - Capítulo VII: O Chamado para o Resgate",
             description=(
-                "Dizia-se que um comando poderoso, o `!!resgatar`, possuía a capacidade de reverter "
+                "Dizia-se que um comando poderoso, o `!!r`, possuía a capacidade de reverter "
                 "o esquecimento e restaurar as lembranças perdidas."
             ),
             color=discord.Color.teal()
@@ -160,7 +160,7 @@ class HistoriaCog(commands.Cog):
         embed10 = discord.Embed(
             title="História do Bot - Capítulo X: O Convite para o Resgate",
             description=(
-                "Agora, a responsabilidade está em suas mãos! Use o comando `!!resgatar` e ajude a restaurar "
+                "A responsabilidade está em suas mãos! Use o comando `!!r` e ajude a restaurar "
                 "os amigos de Equestria antes que sejam apagados para sempre."
             ),
             color=discord.Color.purple()

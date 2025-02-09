@@ -48,7 +48,7 @@ class Instrucoes(commands.Cog):
         paginas = [
             "**Página 1: Introdução**\n"
             "Bem-vindo ao Manual do Bot!\n"
-            "Este bot foi desenvolvido para gerenciar personagens, enviar dicas, sorte e muito mais.\n"
+            "Este bot foi desenvolvido para resgatar personagens do esquecimento.\n"
             "Use os comandos para interagir e explorar as funcionalidades.",
 
             "**Página 2: Comandos Principais**\n"

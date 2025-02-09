@@ -6,18 +6,14 @@ from discord.ext import commands
 import json
 from paginacaoPersonagens import PaginacaoPersonagens
 import asyncio
-from dotenv import load_dotenv
 import os
 import globals
-from funcoes import carregar_estado, carregar_personagens
+from funcoes import carregar_token, carregar_personagens
 
 globals.personagens_inicial = carregar_personagens()
 #globals.personagens_disponiveis, globals.personagens_salvos, globals.contador_personagens_salvos, globals.personagens_por_usuario = carregar_estado()
 
-load_dotenv()
-
-caminho_env = os.path.join(os.path.dirname(os.getcwd()), ".env")
-BOT_TOKEN = os.getenv(caminho_env)
+BOT_TOKEN = carregar_token()
 
 # Configurações do Bot
 intents = discord.Intents.default()

@@ -3,6 +3,7 @@ from discord.ext import commands
 import random
 import json
 import os
+from funcoes import apenas_moderador
 
 class Reverter(commands.Cog):
     def __init__(self, bot):
@@ -42,9 +43,9 @@ class Reverter(commands.Cog):
 
     @commands.command(
         name="perdido",
-        help=("Remove aleatoriamente um personagem dos salvos e o adiciona de volta aos disponíveis. "
-              "Uma mensagem será enviada informando: 'um amigo que tentava ajudar foi perdido novamente.'")
+        help=("Remove aleatoriamente um personagem dos salvos e o adiciona de volta aos disponíveis.")
     )
+    @apenas_moderador()
     async def perdido(self, ctx):
         guild_id = ctx.guild.id
         dados = self.carregar_dados_servidor(guild_id)

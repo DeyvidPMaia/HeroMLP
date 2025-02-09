@@ -1,11 +1,11 @@
-import json
-
-with open('resources/dados.json') as a:
-    dados = json.load(a)
+import os
 
 
-print(dados['personagens_por_usuario'])
+caminho_env = os.path.join(os.path.dirname(os.getcwd()), ".env")
+print(caminho_env)
 
-for usuario, campos in dados['personagens_por_usuario'].items():
-    for a in campos:
-        print(a['nome'], a['especie'])
+if os.path.exists(caminho_env):
+    with open(caminho_env, "r") as f:
+        print(f.read())
+else:
+    print("Arquivo .env não encontrado ou sem permissão.")

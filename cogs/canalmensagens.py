@@ -5,6 +5,7 @@ from discord.ext import commands
 from server_data import carregar_dados_guild, salvar_dados_guild
 from mensagensdica import enviar_dica_personagem  # Atualize essa função para aceitar guild_id
 from mensagenssorte import enviar_sorte_automatico  # Atualize essa função para aceitar guild_id
+from funcoes import apenas_moderador
 
 class CanalMensagens(commands.Cog):
     def __init__(self, bot):
@@ -14,6 +15,7 @@ class CanalMensagens(commands.Cog):
         self.sorte_tasks = {}
 
     @commands.command(name="canal", help="Configura o canal para 'dicas' ou 'sorte'.\nUso: !!canal dicas ou !!canal sorte")
+    @apenas_moderador()
     async def canal(self, ctx, tipo: str):
         tipo = tipo.lower()
         guild_id = str(ctx.guild.id)

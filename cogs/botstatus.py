@@ -4,12 +4,14 @@ import discord
 from discord.ext import commands
 from server_data import carregar_dados_guild
 import globals  # Utilizado para valores padrão (caso a guild não tenha configurado algum parâmetro)
+from funcoes import apenas_moderador
 
 class BotStatus(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name="status", help="Exibe o estado atual do bot e suas configurações.")
+    @apenas_moderador()
     async def exibir_status(self, ctx):
         guild_id = str(ctx.guild.id)
         dados = carregar_dados_guild(guild_id)

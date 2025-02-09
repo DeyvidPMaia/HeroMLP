@@ -25,9 +25,9 @@ contador_personagens_salvos = {}
 personagens_por_usuario = {}
 
 # Variáveis de tempo em segundos. Por exemplo, 300 segundos (5 minutos)
-tempo_impedimento = 10
-tempo_sorte = 10
-intervalo_dica_personagem = 10
+tempo_impedimento = 300
+tempo_sorte = 2000
+intervalo_dica_personagem = 1200
 
 ID_DO_CANAL_DICAS = 0
 ID_DO_CANAL_SORTE = 0
