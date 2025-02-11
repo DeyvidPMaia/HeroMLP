@@ -193,7 +193,7 @@ dicionario = {
   }
   
 
-'''parei na atum blaze'''
+'''parei na rockhoof ze'''
 
 n = 0
 

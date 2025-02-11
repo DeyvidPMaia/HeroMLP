@@ -18,7 +18,7 @@ BOT_TOKEN = carregar_token()
 # Configurações do Bot
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix='!!', intents=intents)
+bot = commands.Bot(command_prefix='+!', intents=intents)
 
 # Função para carregar os dados do arquivo JSON
 def carregar_dados():

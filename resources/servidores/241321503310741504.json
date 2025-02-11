@@ -754,7 +754,8 @@
         "476536045526056962": 1739129460.7758398
     },
     "restricao_usuario_unico": true,
-    "intervalo_dica_personagem": 300,
-    "tempo_sorte": 2000,
-    "ID_DO_CANAL_DICAS": 1338228359267746014
+    "intervalo_dica_personagem": 600,
+    "tempo_sorte": 1200,
+    "ID_DO_CANAL_DICAS": 1338228359267746014,
+    "ID_DO_CANAL_SORTE": 1338228359267746014
 }

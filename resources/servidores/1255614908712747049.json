@@ -25,10 +25,6 @@
             "especie": "Dragon"
         },
         {
-            "nome": "Apple Bloom",
-            "especie": "Earth Pony"
-        },
-        {
             "nome": "Scootaloo",
             "especie": "Pegasus"
         },
@@ -745,10 +741,14 @@
         {
             "nome": "Rarity",
             "especie": "Unicorn"
+        },
+        {
+            "nome": "Apple Bloom",
+            "especie": "Earth Pony"
         }
     ],
     "contador_personagens_salvos": {
-        "476536045526056962": 2
+        "476536045526056962": 3
     },
     "personagens_por_usuario": {
         "476536045526056962": [
@@ -759,11 +759,15 @@
             {
                 "nome": "Rarity",
                 "especie": "Unicorn"
+            },
+            {
+                "nome": "Apple Bloom",
+                "especie": "Earth Pony"
             }
         ]
     },
     "ultimo_resgate_por_usuario": {
-        "476536045526056962": 1739051021.9706075
+        "476536045526056962": 1739231047.6001823
     },
     "ultimo_usuario_salvador": "476536045526056962",
     "restricao_usuario_unico": false,
