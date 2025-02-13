@@ -1,0 +1,763 @@
+{
+    "personagens": [
+        {
+            "nome": "Twilight Sparkle",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Screwball",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Applejack",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Fluttershy",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Rainbow Dash",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Rarity",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Spike",
+            "especie": "Dragon"
+        },
+        {
+            "nome": "Apple Bloom",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Scootaloo",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Sweetie Belle",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Babs Seed",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Big Macintosh",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Granny Smith",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Princess Celestia",
+            "especie": "Alicorn"
+        },
+        {
+            "nome": "Princess Luna",
+            "especie": "Alicorn"
+        },
+        {
+            "nome": "Princess Cadance",
+            "especie": "Alicorn"
+        },
+        {
+            "nome": "Shining Armor",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Discord",
+            "especie": "Draconequus"
+        },
+        {
+            "nome": "Starlight Glimmer",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Trixie Lulamoon",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Sunset Shimmer",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Maud Pie",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Cheese Sandwich",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Zecora",
+            "especie": "Zebra"
+        },
+        {
+            "nome": "Derpy Hooves",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Lyra Heartstrings",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Bon Bon",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Octavia Melody",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Vinyl Scratch",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Spitfire",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Soarin",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Gilda",
+            "especie": "Griffin"
+        },
+        {
+            "nome": "King Sombra",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Queen Chrysalis",
+            "especie": "Changeling"
+        },
+        {
+            "nome": "Tirek",
+            "especie": "Centaur"
+        },
+        {
+            "nome": "Cozy Glow",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Sandbar",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Gallus",
+            "especie": "Griffin"
+        },
+        {
+            "nome": "Yona",
+            "especie": "Yak"
+        },
+        {
+            "nome": "Smolder",
+            "especie": "Dragon"
+        },
+        {
+            "nome": "Ocellus",
+            "especie": "Changeling"
+        },
+        {
+            "nome": "Silverstream",
+            "especie": "Hippogriff"
+        },
+        {
+            "nome": "Thorax",
+            "especie": "Changeling"
+        },
+        {
+            "nome": "Pharynx",
+            "especie": "Changeling"
+        },
+        {
+            "nome": "Capper",
+            "especie": "Cat"
+        },
+        {
+            "nome": "Tempest Shadow",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Grubber",
+            "especie": "Porcine"
+        },
+        {
+            "nome": "Storm King",
+            "especie": "Humanoid"
+        },
+        {
+            "nome": "Sassy Saddles",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Photo Finish",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Hoity Toity",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Fancy Pants",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Flim",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Flam",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Lightning Dust",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Daring Do",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Doctor Hooves",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Ahuizotl",
+            "especie": "Unknown"
+        },
+        {
+            "nome": "Mayor Mare",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Pipsqueak",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Snips",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Snails",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Diamond Tiara",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Silver Spoon",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Filthy Rich",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Spoiled Rich",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Tender Taps",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Gabby",
+            "especie": "Griffin"
+        },
+        {
+            "nome": "Prince Blueblood",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Seabreeze",
+            "especie": "Breezie"
+        },
+        {
+            "nome": "Tree Hugger",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Braeburn",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Little Strongheart",
+            "especie": "Buffalo"
+        },
+        {
+            "nome": "Cherry Jubilee",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Troubleshoes Clyde",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Wind Rider",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Quibble Pants",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Moon Dancer",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Nightmare Moon",
+            "especie": "Alicorn"
+        },
+        {
+            "nome": "Chancellor Neighsay",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Songbird Serenade",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Mudbriar",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Limestone Pie",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Marble Pie",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Cloudchaser",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Flitter",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Feather Bangs",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Sky Stinger",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Vapor Trail",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Autumn Blaze",
+            "especie": "Kirin"
+        },
+        {
+            "nome": "Clear Sky",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Toola Roola",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Coconut Cream",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Firelight",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Pear Butter",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Bright Mac",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Burnt Oak",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Goldie Delicious",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Gloriosa Daisy",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Wallflower Blush",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Juniper Montage",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Somnambula",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Mistmane",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Mage Meadowbrook",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Rockhoof",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Flash Magnus",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Starswirl the Bearded",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "The Pony of Shadows",
+            "especie": "Unknown"
+        },
+        {
+            "nome": "Daybreaker",
+            "especie": "Alicorn"
+        },
+        {
+            "nome": "Opalescence",
+            "especie": "Cat"
+        },
+        {
+            "nome": "Winona",
+            "especie": "Dog"
+        },
+        {
+            "nome": "Angel",
+            "especie": "Rabbit"
+        },
+        {
+            "nome": "Gummy",
+            "especie": "Alligator"
+        },
+        {
+            "nome": "Owlowiscious",
+            "especie": "Owl"
+        },
+        {
+            "nome": "Tank",
+            "especie": "Tortoise"
+        },
+        {
+            "nome": "Philomena",
+            "especie": "Phoenix"
+        },
+        {
+            "nome": "Amethyst Maresbury",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Flash Sentry",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Adagio Dazzle",
+            "especie": "Siren"
+        },
+        {
+            "nome": "Aria Blaze",
+            "especie": "Siren"
+        },
+        {
+            "nome": "Sonata Dusk",
+            "especie": "Siren"
+        },
+        {
+            "nome": "Clover the Clever",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Pansy",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Steven Magnet",
+            "especie": "Sea Serpent"
+        },
+        {
+            "nome": "Cranky Doodle Donkey",
+            "especie": "Donkey"
+        },
+        {
+            "nome": "Matilda",
+            "especie": "Donkey"
+        },
+        {
+            "nome": "Iron Will",
+            "especie": "Minotaur"
+        },
+        {
+            "nome": "Fizzy Pop",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Cinnamon Chai",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Trenderhoof",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Gustave Le Grand",
+            "especie": "Griffon"
+        },
+        {
+            "nome": "Grandpa Gruff",
+            "especie": "Griffon"
+        },
+        {
+            "nome": "Ruby Pinch",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Wind Whistler",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Smooze",
+            "especie": "Ooze-like creature"
+        },
+        {
+            "nome": "Lemon Hearts",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Fiddlesticks",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Silver Streak",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Twinkleshine",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Hoofbeats",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Donut Joe",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Hondo Flanks",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Cookie Crumbles",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Royal Pin",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Princess Skyla",
+            "especie": "Alicorn"
+        },
+        {
+            "nome": "Zippity Zap",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Night Glider",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Sugar Belle",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Double Diamond",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Party Favor",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Moonlight Raven",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Biscuit",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Pop Fizz",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Fleur de Lis",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Clearwater",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Mudslide",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Boulder",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Pony of Shadows",
+            "especie": "Unknown"
+        },
+        {
+            "nome": "Truffle Shuffle",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Caramel",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Fleecy Hooves",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Fuzzy Button",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Countess Coloratura",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Cherry Fizzy",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Featherweight",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Aloe",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Lotus Blossom",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Miss Harshwhinny",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Sapphire Shores",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Jet Set",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Upper Crust",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Coco Pommel",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Svengallop",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Spearhead",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Rumble",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Thunderlane",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Bulk Biceps",
+            "especie": "Pegasus"
+        },
+        {
+            "nome": "Flurry Heart",
+            "especie": "Alicorn"
+        },
+        {
+            "nome": "Sunburst",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Twilight Velvet",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Night Light",
+            "especie": "Unicorn"
+        },
+        {
+            "nome": "Golden Harvest",
+            "especie": "Earth Pony"
+        },
+        {
+            "nome": "Cloud Kicker",
+            "especie": "Pegasus"
+        }
+    ],
+    "personagens_salvos": [
+        {
+            "nome": "Pinkie Pie",
+            "especie": "Earth Pony"
+        }
+    ],
+    "contador_personagens_salvos": {
+        "476536045526056962": 1
+    },
+    "personagens_por_usuario": {
+        "476536045526056962": [
+            {
+                "nome": "Pinkie Pie",
+                "especie": "Earth Pony"
+            }
+        ]
+    },
+    "ultimo_resgate_por_usuario": {
+        "476536045526056962": 1739316745.2791817
+    },
+    "ultimo_usuario_salvador": "476536045526056962",
+    "restricao_usuario_unico": false,
+    "intervalo_dica_personagem": 25,
+    "tempo_impedimento": 500,
+    "tempo_sorte": 25,
+    "ID_DO_CANAL_DICAS": 1325248820891746305,
+    "ID_DO_CANAL_SORTE": 1325248820891746305
+}

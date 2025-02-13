@@ -20,13 +20,29 @@ class SorteView(discord.ui.View):
             self.claimed = True
             self.winner = interaction.user
 
-            # Carrega sortes diretamente do arquivo
+            # Carrega as sortes diretamente do arquivo
             sortes = carregar_sortes()
             sorte_msg = random.choice(sortes["sortes"]) if "sortes" in sortes else "Não há mensagem de sorte disponível no momento."
 
+            # Carrega os dados da guild para obter os personagens
+            dados = carregar_dados_guild(interaction.guild.id)
+            # Extrai os nomes dos personagens já salvos
+            saved_names = {p["nome"] for p in dados.get("personagens_salvos", [])}
+            # Filtra os personagens que ainda não foram salvos
+            unsaved = [p for p in dados.get("personagens", []) if p.get("nome") not in saved_names]
+
+            if unsaved:
+                personagem = random.choice(unsaved)
+                personagem_msg = f"\n**{personagem['nome']}** é um personagem ainda não salvo."
+            else:
+                personagem_msg = f"\nTodos os personagens já foram salvos!"
+
             # Desabilita o botão para que ninguém mais possa abrir o biscoito
             button.disabled = True
-            await interaction.response.send_message(f"✨ Seu biscoito da sorte diz:\n*{sorte_msg}*", ephemeral=True)
+            await interaction.response.send_message(
+                f"✨ Seu biscoito da sorte diz:\n*{sorte_msg}*{personagem_msg}",
+                ephemeral=True
+            )
             # Atualiza a mensagem pública para refletir que o biscoito foi aberto
             await interaction.message.edit(view=self)
 

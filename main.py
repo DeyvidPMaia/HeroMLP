@@ -9,6 +9,7 @@ import asyncio
 import os
 import globals
 from funcoes import carregar_token, carregar_personagens
+import time
 
 globals.personagens_inicial = carregar_personagens()
 #globals.personagens_disponiveis, globals.personagens_salvos, globals.contador_personagens_salvos, globals.personagens_por_usuario = carregar_estado()
@@ -51,7 +52,10 @@ async def on_ready():
     for guild in bot.guilds:
         for member in guild.members:
             globals.user_cache[member.id] = member
-    
+
+    if not hasattr(bot, "start_time"):
+        bot.start_time = time.time()
+
     print(f"Bot conectado como {bot.user}")
 
 
@@ -82,3 +86,5 @@ async def main():
             print(f"Erro inesperado: {e}")
 
 asyncio.run(main())
+
+bot.start_time = time.time()

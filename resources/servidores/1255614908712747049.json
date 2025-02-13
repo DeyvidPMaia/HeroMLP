@@ -21,6 +21,10 @@
             "especie": "Pegasus"
         },
         {
+            "nome": "Rarity",
+            "especie": "Unicorn"
+        },
+        {
             "nome": "Spike",
             "especie": "Dragon"
         },
@@ -421,10 +425,6 @@
             "especie": "Unicorn"
         },
         {
-            "nome": "The Pillars of Equestria",
-            "especie": "Various"
-        },
-        {
             "nome": "The Pony of Shadows",
             "especie": "Unknown"
         },
@@ -441,7 +441,7 @@
             "especie": "Dog"
         },
         {
-            "nome": "Angel Bunny",
+            "nome": "Angel",
             "especie": "Rabbit"
         },
         {
@@ -459,10 +459,6 @@
         {
             "nome": "Philomena",
             "especie": "Phoenix"
-        },
-        {
-            "nome": "Ruby",
-            "especie": "Earth Pony"
         },
         {
             "nome": "Amethyst Maresbury",
@@ -739,16 +735,12 @@
             "especie": "Earth Pony"
         },
         {
-            "nome": "Rarity",
-            "especie": "Unicorn"
-        },
-        {
             "nome": "Apple Bloom",
             "especie": "Earth Pony"
         }
     ],
     "contador_personagens_salvos": {
-        "476536045526056962": 3
+        "476536045526056962": 2
     },
     "personagens_por_usuario": {
         "476536045526056962": [
@@ -757,22 +749,19 @@
                 "especie": "Earth Pony"
             },
             {
-                "nome": "Rarity",
-                "especie": "Unicorn"
-            },
-            {
                 "nome": "Apple Bloom",
                 "especie": "Earth Pony"
             }
         ]
     },
     "ultimo_resgate_por_usuario": {
-        "476536045526056962": 1739231047.6001823
+        "476536045526056962": 1739319169.4806135
     },
     "ultimo_usuario_salvador": "476536045526056962",
     "restricao_usuario_unico": false,
     "intervalo_dica_personagem": 25,
     "tempo_impedimento": 500,
-    "tempo_sorte": 10,
-    "ID_DO_CANAL_DICAS": 1325248820891746305
+    "tempo_sorte": 25,
+    "ID_DO_CANAL_DICAS": 1325248820891746305,
+    "ID_DO_CANAL_SORTE": 1325248820891746305
 }
