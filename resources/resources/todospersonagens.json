@@ -1,7 +1,0 @@
-{
-  "personagens": [
-    {"nome": "Starlight Glimmer (EG)", "especie": "Unicorn", "cor": "#D8BFD8", "alinhamento": "4"},
-    {"nome": "Sunset Shimmer (EG)", "especie": "Unicorn", "cor": "#FFFF00", "alinhamento": "3"},
-    {"nome": "Twilight Sparkle (EG)", "especie": "Human", "cor": "#D8BFD8", "alinhamento": "3"}
-  ]
-}
