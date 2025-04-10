@@ -108,21 +108,6 @@ def apenas_moderador():
 
     return decorator
 
-#mudei no resgatar e exibir
-imagens_primeiroabril = []
-def carregar_imagens_primeiro_abril():
-    """Carrega as imagens da pasta 'naoencontrado' uma vez no início."""
-    global imagens_primeiroabril
-    caminho_pasta = "primeiroabril"
-    imagens_primeiroabril = [
-        os.path.join(caminho_pasta, arquivo).replace(os.sep, "/")  # Substitui separador nativo por "/"
-        for arquivo in os.listdir(caminho_pasta)
-        if arquivo.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp'))]
-carregar_imagens_primeiro_abril()
-def sortear_primeiro_abril():
-    """Sorteia uma imagem da lista pré-carregada."""
-    return random.choice(imagens_primeiroabril)
-
 def verificar_imagem(imagem):
     if os.path.isfile(imagem):
         return imagem
