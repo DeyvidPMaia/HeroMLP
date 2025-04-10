@@ -147,9 +147,6 @@ class Exibir(commands.Cog):
         user_data = usuarios.setdefault(user_id, {"coracao": 0, "quantidade_amor": 0, "trevo": 0, "changeling": [], "quantidade_recompensa": 0, "ultimo_reset_recompensa": 0})
 
         personagens_especiais = dados.setdefault("personagens_especiais", {
-            "Lightly Unicorn": {"recompensa": 25, "copiavel": False},
-            "Fyreheart Flare": {"recompensa": 10, "copiavel": True},
-            "Fyreheart Flare Seapony": {"recompensa": 15, "copiavel": True},
             "Lauren Faust": {"recompensa": 10, "copiavel": True},
             "Starlight Glimmer": {"recompensa": 10, "copiavel": True}
         })
