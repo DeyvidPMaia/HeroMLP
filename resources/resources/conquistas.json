@@ -1,0 +1,28 @@
+{
+    "conquistas": [
+      {
+        "id": "mane_six",
+        "nome": "Mane Six Completa",
+        "descricao": "Resgate todas as Mane Six.",
+        "condicoes": [
+          { "tipo": "incluir", "personagem": "Twilight Sparkle" },
+          { "tipo": "incluir", "personagem": "Applejack" },
+          { "tipo": "incluir", "personagem": "Rainbow Dash" },
+          { "tipo": "incluir", "personagem": "Rarity" },
+          { "tipo": "incluir", "personagem": "Fluttershy" },
+          { "tipo": "incluir", "personagem": "Pinkie Pie" }
+        ]
+      },
+      {
+        "id": "brothers_apple",
+        "nome": "Família Apple",
+        "descricao": "Resgate todos os três irmãos Apple de Ponyville.",
+        "condicoes": [
+          { "tipo": "incluir", "personagem": "Apple Bloom" },
+          { "tipo": "incluir", "personagem": "Applejack" },
+          { "tipo": "incluir", "personagem": "Big Macintosh" }
+        ]
+      }
+    ]
+  }
+  
